@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>People</title>
+</head>
+<body>
+<form method="post" action="/FTTPEOPLE/people">
+<fieldset>
+    <legend>People</legend>
+		<p>    
+			<label for="pid">ID: <input id="pid" name="pid" type="number" disabled></label>
+		</p>
+		<p>    
+			<label for="pname">Name: <input id="pname" name="pname" type="text" required></label>
+		</p>
+		<p>
+			<label for="email">E-Mail: <input id="email" name="email" type="email" required></label>
+		</p>
+		<p>
+			<label for="dob">DOB: <input id="dob" name="dob" type="date" required></label>
+		</p>
+		<p>
+			<label for="value">Value: <input id="value" name="value" type="number" required></label>
+		</p>
+		<p>
+			<label for="color">Color: <input id="color" name="color" type="color" required></label>
+		</p>
+		<p>
+        	<label for="cardType">Card type:
+        	<select id="cardType" name="cardType">
+          		<option value="visa">Visa</option>
+          		<option value="mastercard">Mastercard</option>
+          		<option value="amex">American Express</option>
+        	</select>
+      		</label>
+        </p>
+    	<p>
+    		<label for="gender">Gender:<br>
+    			<input type="radio" name="gender" value="male" checked> Male<br>
+  				<input type="radio" name="gender" value="female"> Female<br>
+  				<input type="radio" name="gender" value="other"> Other
+    		</label>
+    	</p>
+		<label>Period:
+        	<div>
+        		<input type="checkbox" id="period" name="periodM"
+                       value="morning" checked />
+        		<label for="morning">Morning</label>
+    		</div>
+
+    		<div>
+        
+        		<input type="checkbox" id="period" name="periodA"
+               	       value="afternoon" />
+        		<label for="afternoon">Afternoon</label>
+    		</div>
+
+    		<div>
+        
+        		<input type="checkbox" id="period" name="periodN"
+               		   value="night" />
+        		<label for="night">Night</label>
+    		</div>
+    		</label>
+		<p>
+			<input name="Reset" type="reset" required>
+			<input name="Submit" type="submit" required>	
+		</p>
+<p>
+<a href="https://www.w3schools.com/html/html_forms.asp" target="w3c">W3Schools Forms</a><br>
+<a href="https://developer.mozilla.org/pt-BR/docs/Web/Guide/HTML/Forms/How_to_structure_an_HTML_form" target="mdn">MDN Forms</a>
+</p>
+</fieldset>
+</form>
+</body>
+</html>
