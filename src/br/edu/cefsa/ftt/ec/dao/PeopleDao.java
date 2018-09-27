@@ -10,7 +10,7 @@ import java.util.List;
 import br.edu.cefsa.ftt.ec.model.People;
 import br.edu.cefsa.ftt.util.DbUtil;
 
-public class PeopleDao {
+public class PeopleDao extends Dao {
 
     private Connection connection;
 

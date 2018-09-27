@@ -1,4 +1,4 @@
-package br.edu.ftt.ec.controller;
+package br.edu.cefsa.ftt.ec.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
