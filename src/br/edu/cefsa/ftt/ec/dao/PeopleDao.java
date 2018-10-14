@@ -48,7 +48,7 @@ public class PeopleDao implements Dao {
         try {
             
         	PreparedStatement preparedStatement = connection
-                    .prepareStatement("DELETE FROM PEOPOLE WHERE idPeople=?");
+                    .prepareStatement("DELETE FROM PEOPLE WHERE idPeople=?");
             
             // Parameters start with 1
             preparedStatement.setLong(1, id);
@@ -56,6 +56,8 @@ public class PeopleDao implements Dao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            
+            throw new ArithmeticException("PeopleDao: deletePeople: " + e.getMessage());
         }
     } //deletePeople
 
@@ -88,6 +90,8 @@ public class PeopleDao implements Dao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            
+            throw new ArithmeticException("PeopleDao: updatePeople: " + e.getMessage());
         }
     } //updatePeople
 
@@ -116,6 +120,8 @@ public class PeopleDao implements Dao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            
+            throw new ArithmeticException("PeopleDao: getAllPeople: " + e.getMessage());
         }
 
         return p;
@@ -145,6 +151,8 @@ public class PeopleDao implements Dao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            
+            throw new ArithmeticException("PeopleDao: getUserById: " + e.getMessage());
         }
 
         return p;
