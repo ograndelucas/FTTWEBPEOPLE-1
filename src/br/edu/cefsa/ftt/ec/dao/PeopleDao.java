@@ -8,9 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import br.edu.cefsa.ftt.ec.model.People;
-import br.edu.cefsa.ftt.util.DbUtil;
+import br.edu.cefsa.ftt.ec.util.*;
 
-public class PeopleDao extends Dao {
+public class PeopleDao implements Dao {
 
     private Connection connection;
 
@@ -48,7 +48,7 @@ public class PeopleDao extends Dao {
         try {
             
         	PreparedStatement preparedStatement = connection
-                    .prepareStatement("DELETE FROM PEOPOLE WHERE ID=?");
+                    .prepareStatement("DELETE FROM PEOPOLE WHERE idPeople=?");
             
             // Parameters start with 1
             preparedStatement.setLong(1, id);
@@ -70,7 +70,7 @@ public class PeopleDao extends Dao {
                     		                          + "GENDER=?, " 
                     		                          + "PERIOD=? " 
                     		                          + "VALUE=? " 
-                                               + "WHERE ID=?");
+                                               + "WHERE idPeople=?");
             
             // Parameters start with 1
             preparedStatement.setString(1, people.getName());
@@ -102,7 +102,7 @@ public class PeopleDao extends Dao {
                 
             	People people = new People();
                 
-            	people.setId(rs.getLong("ID"));
+            	people.setId(rs.getLong("idPeople"));
                 people.setName(rs.getString("NAME"));
                 people.setEmail(rs.getString("EMAIL"));
                 people.setDob(rs.getDate("DOB"));
@@ -127,13 +127,13 @@ public class PeopleDao extends Dao {
         
     	try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("SELECT * from PEOPLE WHERE ID=?");
+                    prepareStatement("SELECT * from PEOPLE WHERE idPeople=?");
             
             preparedStatement.setLong(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-                p.setId(rs.getLong("ID"));
+                p.setId(rs.getLong("idPeople"));
                 p.setName(rs.getString("NAME"));
                 p.setEmail(rs.getString("EMAIL"));
                 p.setDob(rs.getDate("DOB"));
