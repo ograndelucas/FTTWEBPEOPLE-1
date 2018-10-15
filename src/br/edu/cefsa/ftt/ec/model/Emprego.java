@@ -1,5 +1,6 @@
 package br.edu.cefsa.ftt.ec.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Emprego {
@@ -30,31 +31,46 @@ public class Emprego {
 		return dataAdmissao;
 	}
 
-	public void setDataAdmissao(Date dataAdmissao) {
-		this.dataAdmissao = dataAdmissao;
+	public void setDataAdmissao(String dataAdmissao) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+
+		try { 
+			this.dataAdmissao = formatter.parse(dataAdmissao);
+		} catch (Exception e) {
+			System.err.println("Ops! Problema com a data: " + dataAdmissao);
+			e.printStackTrace();
+		} //try
+		
 	}
 
 	public Date getDataDemissao() {
 		return dataDemissao;
 	}
 
-	public void setDataDemissao(Date dataDemissao) {
-		this.dataDemissao = dataDemissao;
+	public void setDataDemissao(String dataDemissao) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+
+		try { 
+			this.dataDemissao = formatter.parse(dataDemissao);
+		} catch (Exception e) {
+			System.err.println("Ops! Problema com a data: " + dataDemissao);
+			e.printStackTrace();
+		} //try
 	}
 
-	public Emprego(long idPeople, long idTrabalho, Date dataAdmissao) {
+	public Emprego(long idPeople, long idTrabalho, String dataAdmissao) {
 		super();
 		this.idPeople = idPeople;
 		this.idTrabalho = idTrabalho;
-		this.dataAdmissao = dataAdmissao;
+		setDataAdmissao(dataAdmissao);
 	}
 
-	public Emprego(long idPeople, long idTrabalho, Date dataAdmissao, Date dataDemissao) {
+	public Emprego(long idPeople, long idTrabalho, String dataAdmissao, String dataDemissao) {
 		super();
 		this.idPeople = idPeople;
 		this.idTrabalho = idTrabalho;
-		this.dataAdmissao = dataAdmissao;
-		this.dataDemissao = dataDemissao;
+		setDataAdmissao(dataAdmissao);
+		setDataDemissao(dataDemissao);
 	}
 
 	public Emprego() {
