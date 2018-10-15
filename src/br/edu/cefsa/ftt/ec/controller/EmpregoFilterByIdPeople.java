@@ -13,22 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.JsonObject;
 
 import br.edu.cefsa.ftt.ec.dao.EmpregoDao;
-import br.edu.cefsa.ftt.ec.dao.TrabalhoDao;
 import br.edu.cefsa.ftt.ec.model.Emprego;
-import br.edu.cefsa.ftt.ec.model.Trabalho;
 import br.edu.cefsa.ftt.ec.util.JsonConverter;
 
 /**
- * Servlet implementation class EmpregoAdd
+ * Servlet implementation class EmpregoFilterByIdPeople
  */
-@WebServlet(name = "empregoAdd", urlPatterns = { "/empregoAdd" })
-public class EmpregoAdd extends HttpServlet {
+@WebServlet(name = "empregoFilterByIdPeople", urlPatterns = { "/empregoFilterByIdPeople" })
+public class EmpregoFilterByIdPeople extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmpregoAdd() {
+    public EmpregoFilterByIdPeople() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,7 +41,8 @@ public class EmpregoAdd extends HttpServlet {
 		// TODO Auto-generated method stub
 		try {
 			EmpregoDao dao = new EmpregoDao();
-			List<Emprego> emprega = dao.getAllEmprego();
+			long id = Long.valueOf(request.getParameter("pidPeople"));
+			List<Emprego> emprega = dao.getEmpregoByIdPeople(id);
 			
 			JsonConverter converter = new JsonConverter();
 			String output = converter.convertToJsonArray(emprega, "Empregos");
@@ -75,51 +74,6 @@ public class EmpregoAdd extends HttpServlet {
 	         
 		}
 		response.flushBuffer();
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Emprego emp = new Emprego(Long.valueOf(request.getParameter("pidPeople")),Long.valueOf(request.getParameter("pidTrabalho")),
-									request.getParameter("pDataAdmissao"));		
-		System.out.print(emp);
-		
-		EmpregoDao dao = new EmpregoDao();
-		
-		String status = "OK";
-		String message = "Emprego Adicionado com Sucesso!!!";
-		String now = String.valueOf(new Date());
-		
-		try {
-		   dao.addEmprego(emp);
-		   response.setStatus(200);
-		} catch (Exception e) {
-			status = "Error";
-			message = e.getMessage();
-			System.err.println(now +  " - Ops!! - " + message);
-			System.err.println(now +  " - Ops!! - " + emp);
-			e.printStackTrace();
-			response.setStatus(100);
-		}
-		
-		response.setContentType("application/json"); //MIME Type
-		response.setCharacterEncoding("utf-8");
-		
-		
-	    //create Json Object
-		JsonObject json = new JsonObject();
-
-		// put some value pairs into the JSON object .
-		
-		json.addProperty("Status", status);
-		json.addProperty("Message", message);
-		json.addProperty("Time", now);
-
-
-		 response.getWriter().print(json.toString());
-         response.flushBuffer();
 	}
 
 }
