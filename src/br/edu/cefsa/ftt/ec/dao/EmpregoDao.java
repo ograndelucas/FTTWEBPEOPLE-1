@@ -12,7 +12,7 @@ import br.edu.cefsa.ftt.ec.model.Emprego;
 import br.edu.cefsa.ftt.ec.model.Trabalho;
 import br.edu.cefsa.ftt.ec.util.DbUtil;
 
-class EmpregoDao implements Dao{
+public class EmpregoDao implements Dao{
 
 	private Connection connection;
 	
@@ -92,9 +92,9 @@ class EmpregoDao implements Dao{
             ResultSet rs = statement.executeQuery("SELECT * FROM Emprego");
             while (rs.next()) {
                 
-            	Emprego emprego = new Emprego(rs.getLong("idPeople"),rs.getLong("idTrabalho"),rs.getDate("DATAADMISSAO"));
+            	Emprego emprego = new Emprego(rs.getLong("idPeople"),rs.getLong("idTrabalho"),rs.getString("DATAADMISSAO"));
             	if(rs.getDate("DATADEMISSAO") != null) {
-            		emprego.setDataDemissao(rs.getDate("DATADEMISSAO"));
+            		emprego.setDataDemissao(rs.getString("DATADEMISSAO"));
             	}
 
                 emp.add(emprego);
@@ -121,9 +121,9 @@ class EmpregoDao implements Dao{
 
             while (rs.next()) {
                 
-            	Emprego emprego = new Emprego(rs.getLong("idPeople"),rs.getLong("idTrabalho"),rs.getDate("DATAADMISSAO"));
+            	Emprego emprego = new Emprego(rs.getLong("idPeople"),rs.getLong("idTrabalho"),rs.getString("DATAADMISSAO"));
             	if(rs.getDate("DATADEMISSAO") != null) {
-            		emprego.setDataDemissao(rs.getDate("DATADEMISSAO"));
+            		emprego.setDataDemissao(rs.getString("DATADEMISSAO"));
             	}
 
                 emp.add(emprego);
@@ -153,9 +153,9 @@ class EmpregoDao implements Dao{
 
             while (rs.next()) {
                 
-            	Emprego emprego = new Emprego(rs.getLong("idPeople"),rs.getLong("idTrabalho"),rs.getDate("DATAADMISSAO"));
+            	Emprego emprego = new Emprego(rs.getLong("idPeople"),rs.getLong("idTrabalho"),rs.getString("DATAADMISSAO"));
             	if(rs.getDate("DATADEMISSAO") != null) {
-            		emprego.setDataDemissao(rs.getDate("DATADEMISSAO"));
+            		emprego.setDataDemissao(rs.getString("DATADEMISSAO"));
             	}
 
                 emp.add(emprego);
