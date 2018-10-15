@@ -11,7 +11,7 @@ import java.util.List;
 import br.edu.cefsa.ftt.ec.util.DbUtil;
 import br.edu.cefsa.ftt.ec.model.*;
 
-class TrabalhoDao implements Dao{
+public class TrabalhoDao implements Dao{
 	
 	private Connection connection;
 
@@ -43,7 +43,7 @@ class TrabalhoDao implements Dao{
         try {
             
         	PreparedStatement preparedStatement = connection
-                    .prepareStatement("DELETE FROM TRABALHO WHERE idTrabalho=?");
+                    .prepareStatement("DELETE FROM Trabalho WHERE idTrabalho=?");
             
             // Parameters start with 1
             preparedStatement.setLong(1, id);
@@ -59,7 +59,7 @@ class TrabalhoDao implements Dao{
     public void updateTrabalho(Trabalho empresa) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("UPDATE TRABALHO SET NOME=?, " 
+                    .prepareStatement("UPDATE Trabalho SET NOME=?, " 
                     		                          + "LOCALIZACAO=?, "                     		                         
                                                + "WHERE idTrabalho=?");
             
@@ -85,7 +85,7 @@ class TrabalhoDao implements Dao{
         
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM TRABALHO");
+            ResultSet rs = statement.executeQuery("SELECT * FROM Trabalho");
             while (rs.next()) {
                 
             	Trabalho empresa = new Trabalho(rs.getLong("idTrabalho"),rs.getString("NOME"),rs.getString("LOCALIZACAO"));
@@ -108,7 +108,7 @@ class TrabalhoDao implements Dao{
         
     	try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("SELECT * from TRABALHO WHERE idTrabalho=?");
+                    prepareStatement("SELECT * from Trabalho WHERE idTrabalho=?");
             
             preparedStatement.setLong(1, id);
             ResultSet rs = preparedStatement.executeQuery();

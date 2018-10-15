@@ -22,7 +22,7 @@ public class PeopleDao implements Dao {
         
     	try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("INSERT INTO PEOPLE (NAME, EMAIL, DOB, COLOR, CARDTYPE, GENDER, PERIOD, VALUE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                    .prepareStatement("INSERT INTO People (NAME, EMAIL, DOB, COLOR, CARDTYPE, GENDER, PERIOD, VALUE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             
             // Parameters start with 1
             preparedStatement.setString(1, people.getName());
@@ -48,7 +48,7 @@ public class PeopleDao implements Dao {
         try {
             
         	PreparedStatement preparedStatement = connection
-                    .prepareStatement("DELETE FROM PEOPLE WHERE idPeople=?");
+                    .prepareStatement("DELETE FROM People WHERE idPeople=?");
             
             // Parameters start with 1
             preparedStatement.setLong(1, id);
@@ -64,7 +64,7 @@ public class PeopleDao implements Dao {
     public void updatePeople(People people) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("UPDATE USERS SET NAME=?, " 
+                    .prepareStatement("UPDATE People SET NAME=?, " 
                     		                          + "EMAIL=?, " 
                     		                          + "DOB=?, " 
                     		                          + "COLOR=?, " 
@@ -101,7 +101,7 @@ public class PeopleDao implements Dao {
         
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM PEOPLE");
+            ResultSet rs = statement.executeQuery("SELECT * FROM People");
             while (rs.next()) {
                 
             	People people = new People();
@@ -111,10 +111,10 @@ public class PeopleDao implements Dao {
                 people.setEmail(rs.getString("EMAIL"));
                 people.setDob(rs.getDate("DOB"));
                 people.setValue(rs.getFloat("VALUE"));
-                people.setValue(rs.getString("COLOR"));
-                people.setValue(rs.getString("CARDTYPE"));
-                people.setValue(rs.getString("GENDER"));
-                people.setValue(rs.getString("PERIOD"));
+                //people.setValue("A"+rs.getString("COLOR"));
+                //people.setValue(rs.getString("CARDTYPE"));
+                //people.setValue(rs.getString("GENDER"));
+                //people.setValue(rs.getString("PERIOD"));
 
                 p.add(people);
             }
@@ -133,7 +133,7 @@ public class PeopleDao implements Dao {
         
     	try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("SELECT * from PEOPLE WHERE idPeople=?");
+                    prepareStatement("SELECT * from People WHERE idPeople=?");
             
             preparedStatement.setLong(1, id);
             ResultSet rs = preparedStatement.executeQuery();
